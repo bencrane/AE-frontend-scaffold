@@ -59,17 +59,19 @@ export function DiscoveryCarousel({ title, slug, candidates }: { title: string, 
 
       <div className="relative w-full overflow-hidden">
         {/* Navigation Overlays */}
-        <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none flex items-center justify-start opacity-0 group-hover:opacity-100 transition-opacity">
-          <Button variant="outline" size="icon" className="rounded-full bg-background shadow-md border-border h-10 w-10 pointer-events-auto ml-1" onClick={scrollPrev}>
-            <ChevronLeft className="h-5 w-5" />
-          </Button>
-        </div>
+        <button 
+          onClick={scrollPrev}
+          className="absolute -left-4 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-zinc-900 border border-slate-800 flex items-center justify-center text-slate-400 opacity-0 group-hover:opacity-100 hover:text-white transition-all z-10 hover:scale-110 shadow-xl"
+        >
+          <ChevronLeft className="w-4 h-4" />
+        </button>
 
-        <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none flex items-center justify-end opacity-0 group-hover:opacity-100 transition-opacity">
-          <Button variant="outline" size="icon" className="rounded-full bg-background shadow-md border-border h-10 w-10 pointer-events-auto mr-4" onClick={scrollNext}>
-            <ChevronRight className="h-5 w-5" />
-          </Button>
-        </div>
+        <button 
+          onClick={scrollNext}
+          className="absolute -right-4 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-zinc-900 border border-slate-800 flex items-center justify-center text-slate-400 opacity-0 group-hover:opacity-100 hover:text-white transition-all z-10 hover:scale-110 shadow-xl"
+        >
+          <ChevronRight className="w-4 h-4" />
+        </button>
         
         {/* Track */}
         {/* Using native snap-x and flex spacing for smooth layout */}
