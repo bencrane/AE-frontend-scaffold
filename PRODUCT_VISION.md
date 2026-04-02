@@ -78,26 +78,11 @@ The company exists on the platform. Their AE roles (the ones we chose to aggrega
 
 ---
 
-## Pricing
+## Monetization Model
 
-Two tiers at launch. Flat monthly subscription. No placement fees. No commissions. Framed as launch pricing — implying the economics will evolve.
+Companies pay a flat monthly or annual subscription. Zero placement fees. Zero commissions at launch — framed as launch pricing, implying the economics will evolve.
 
-**Starter — $299/month**
-- 1 active job opening on platform
-- Up to 20 candidate unlocks per month
-- Standard candidate filtering
-- Basic ATS sync (CSV/email export)
-- 0% placement fees
-
-**Growth — $699/month**
-- Unlimited active job openings
-- Unlimited candidate unlocks
-- Advanced pedigree filtering (by specific companies, CRO lineage, VC backing, etc.)
-- Native API ATS sync (Greenhouse, Lever, Ashby, etc.)
-- Dedicated account manager
-- 0% placement fees
-
-Launch promotion: code LAUNCH for 40% off first 3 months.
+The application should support tiered subscription plans where higher tiers unlock more capacity (more role listings, more candidate unlocks, deeper ATS integration). The specific tiers, pricing, and feature gating will be configured outside the application — the frontend needs to support the *concept* of tiered access, not hardcoded plan details. Key gating dimensions: number of active roles, number of candidate unlocks per period, depth of ATS integration (export vs. native API sync), and filtering sophistication.
 
 ### Design Principle: The Rippling Problem
 
@@ -121,7 +106,7 @@ Candidates appear in the browse/search experience in an anonymized state. Paying
 
 ### ATS Integration
 
-The platform integrates with major ATS platforms: Greenhouse, Lever, Ashby, Rippling, BambooHR. When a candidate is unlocked or expresses interest, their structured profile data is pushed directly into the company's ATS as a new candidate record. This is not a link or a PDF — it's a native API integration that creates a real candidate in their pipeline. For Starter tier, this is a CSV/email export. For Growth tier, this is a live API sync.
+The platform integrates with major ATS platforms: Greenhouse, Lever, Ashby, Rippling, BambooHR. When a candidate is unlocked or expresses interest, their structured profile data is pushed directly into the company's ATS as a new candidate record. This is not a link or a PDF — it's a native API integration that creates a real candidate in their pipeline. The depth of ATS integration (manual export vs. live API sync) may vary by subscription tier.
 
 ### Intent Signaling
 
