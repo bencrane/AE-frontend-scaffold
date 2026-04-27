@@ -13,8 +13,8 @@ export default function Home() {
           <Link href="/company" className="block w-full text-center p-4 bg-primary text-primary-foreground font-semibold hover:bg-emerald-600 transition-colors">
             Login as Company
           </Link>
-          <Link href="/candidate" className="block w-full text-center p-4 border border-border text-foreground font-semibold hover:bg-secondary/50 transition-colors cursor-not-allowed opacity-50">
-            Login as Candidate (WIP)
+          <Link href="/ae" className="block w-full text-center p-4 border border-border text-foreground font-semibold hover:bg-secondary/50 transition-colors">
+            Login as Candidate
           </Link>
         </div>
       </div>
