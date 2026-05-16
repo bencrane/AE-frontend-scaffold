@@ -17,7 +17,7 @@ import {
 } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/Card'; // Oh wait, I need to check how Card is exported. Let's stick to simple divs if I don't know the Card path, or I'll just use standard HTML structure with tailwind.
+import { Card, CardContent } from '@/components/ui/card';
 
 // Mock Data
 const MOCK_ROLES = [
