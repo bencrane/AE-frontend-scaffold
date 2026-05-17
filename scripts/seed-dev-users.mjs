@@ -22,7 +22,7 @@
 
 import { createClient } from '@supabase/supabase-js';
 
-const DEV_PASSWORD = 'dev-password-123';
+const DEV_PASSWORD = 'testing123!';
 
 const USERS = [
   {
@@ -91,7 +91,14 @@ async function findUserByEmail(admin, email) {
 async function ensureUser(admin, spec) {
   const existing = await findUserByEmail(admin, spec.email);
   if (existing) {
-    console.log(`[users] ${spec.email} already exists → ${existing.id}`);
+    // Refresh password + metadata so re-runs are idempotent in both directions
+    // (including a password rotation across re-runs).
+    const { error } = await admin.auth.admin.updateUserById(existing.id, {
+      password: spec.password,
+      user_metadata: spec.metadata,
+    });
+    if (error) throw error;
+    console.log(`[users] ${spec.email} already exists → ${existing.id} (password + metadata refreshed)`);
     return existing.id;
   }
   const { data, error } = await admin.auth.admin.createUser({

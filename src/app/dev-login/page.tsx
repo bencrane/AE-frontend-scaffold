@@ -16,7 +16,7 @@ export default function DevLoginPage() {
   const searchParams = useSearchParams();
   const next = searchParams.get('next') ?? '/ae';
   const [email, setEmail] = useState('candidate1@accountexecutive.test');
-  const [password, setPassword] = useState('dev-password-123');
+  const [password, setPassword] = useState('testing123!');
   const [status, setStatus] = useState<'idle' | 'signing-in' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
@@ -41,7 +41,7 @@ export default function DevLoginPage() {
         ? 'candidate1@accountexecutive.test'
         : 'recruiter1@accountexecutive.test',
     );
-    setPassword('dev-password-123');
+    setPassword('testing123!');
   }
 
   return (
