@@ -17,21 +17,32 @@ const schema = z.object({
   APP_ENV: z.enum(['dev', 'stg', 'prd']),
 });
 
-const parsed = schema.safeParse({
-  NEXT_PUBLIC_SUPABASE_URL: process.env.NEXT_PUBLIC_SUPABASE_URL,
-  NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY: process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY,
-  AE_SUPABASE_SERVICE_ROLE_KEY: process.env.AE_SUPABASE_SERVICE_ROLE_KEY,
-  AE_DB_POOLED_URL: process.env.AE_DB_POOLED_URL,
-  DEX_BASE_URL: process.env.DEX_BASE_URL,
-  DEX_SERVICE_TOKEN: process.env.DEX_SERVICE_TOKEN,
-  APP_ENV: process.env.APP_ENV,
-});
+type Env = z.infer<typeof schema>;
 
-if (!parsed.success) {
-  const issues = parsed.error.issues
-    .map((i) => `${i.path.join('.')}: ${i.message}`)
-    .join('; ');
-  throw new Error(`Invalid environment: ${issues}`);
+let cached: Env | null = null;
+
+function resolve(): Env {
+  if (cached) return cached;
+  const parsed = schema.safeParse({
+    NEXT_PUBLIC_SUPABASE_URL: process.env.NEXT_PUBLIC_SUPABASE_URL,
+    NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY: process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY,
+    AE_SUPABASE_SERVICE_ROLE_KEY: process.env.AE_SUPABASE_SERVICE_ROLE_KEY,
+    AE_DB_POOLED_URL: process.env.AE_DB_POOLED_URL,
+    DEX_BASE_URL: process.env.DEX_BASE_URL,
+    DEX_SERVICE_TOKEN: process.env.DEX_SERVICE_TOKEN,
+    APP_ENV: process.env.APP_ENV,
+  });
+  if (!parsed.success) {
+    const issues = parsed.error.issues
+      .map((i) => `${i.path.join('.')}: ${i.message}`)
+      .join('; ');
+    throw new Error(`Invalid environment: ${issues}`);
+  }
+  cached = parsed.data;
+  return cached;
 }
 
-export const env = parsed.data;
+export const env = new Proxy({} as Env, {
+  get: (_t, key: string) => resolve()[key as keyof Env],
+  has: (_t, key: string) => key in schema.shape,
+});
