@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
+import { Link, Navigate, Route, Routes, useNavigate } from "react-router-dom";
 import { supabase } from "@/lib/supabase";
 import LoginPage from "@/routes/login";
 import DevLoginPage from "@/routes/dev-login";
+import AeCredentialsPage from "@/routes/ae-credentials";
 
 export default function App() {
   const navigate = useNavigate();
@@ -39,7 +40,20 @@ export default function App() {
       <Route path="/login" element={<LoginPage />} />
       <Route path="/dev-login" element={<DevLoginPage />} />
       {/* /ae is the post-sign-in candidate home — stub for this cycle */}
-      <Route path="/ae" element={<div className="p-8">Signed in. (AE home stub.)</div>} />
+      <Route
+        path="/ae"
+        element={
+          <div className="p-8 space-y-4">
+            <p>Signed in. (AE home stub.)</p>
+            <nav>
+              <Link to="/ae/credentials" className="text-sm text-blue-600 underline">
+                Verified Credentials
+              </Link>
+            </nav>
+          </div>
+        }
+      />
+      <Route path="/ae/credentials" element={<AeCredentialsPage />} />
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   );
