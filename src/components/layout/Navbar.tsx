@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Lock } from "lucide-react";
 
@@ -7,20 +7,20 @@ export function Navbar() {
     <header className="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 max-w-7xl items-center justify-between mx-auto px-4 md:px-6">
         <div className="flex items-center gap-6 md:gap-10">
-          <Link href="/" className="flex items-center space-x-2 pb-1">
+          <Link to="/" className="flex items-center space-x-2 pb-1">
             <span className="font-heading font-bold sm:inline-block text-2xl tracking-tight">
               AccountExecutive<span className="text-primary">.com</span>
             </span>
           </Link>
           <nav className="hidden md:flex gap-6">
             <Link
-              href="/"
+              to="/"
               className="flex items-center text-sm font-medium text-foreground transition-colors"
             >
               Role Exchange
             </Link>
             <Link
-              href="/insights"
+              to="/insights"
               className="flex items-center text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
             >
               Insights
@@ -29,7 +29,7 @@ export function Navbar() {
         </div>
         <div className="flex items-center space-x-4">
           <Link
-            href="/login"
+            to="/login"
             className="text-sm font-medium text-muted-foreground hover:text-foreground hidden sm:block"
           >
             Sign In

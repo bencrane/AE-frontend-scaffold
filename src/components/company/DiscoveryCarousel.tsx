@@ -1,11 +1,8 @@
-"use client";
-
-import { useRef, useState, useEffect } from "react";
+import { useRef, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { CandidateTriageCard } from "@/components/company/CandidateTriageCard";
 import { Candidate } from "@/lib/mock-candidates";
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 
 export function DiscoveryCarousel({ title, slug, candidates }: { title: string, slug: string, candidates: Candidate[] }) {
   const trackRef = useRef<HTMLDivElement>(null);
@@ -52,7 +49,7 @@ export function DiscoveryCarousel({ title, slug, candidates }: { title: string, 
     <div className="space-y-4 group relative">
       <div className="flex justify-between items-end border-b border-border/50 pb-2">
         <h2 className="text-lg font-heading font-semibold">{title}</h2>
-        <Link href={`/company/discover/${slug}`} className="text-xs font-mono text-primary uppercase tracking-widest hover:underline">
+        <Link to={`/company/discover/${slug}`} className="text-xs font-mono text-primary uppercase tracking-widest hover:underline">
           View all
         </Link>
       </div>

@@ -1,12 +1,9 @@
-"use client";
-
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { Link, useLocation } from 'react-router-dom';
 import { LayoutDashboard, Compass, Briefcase, Building, Globe, Settings } from 'lucide-react';
 
 export function CompanySidebar() {
-  const pathname = usePathname() || "";
-  
+  const { pathname } = useLocation();
+
   const isCompanyRoot = pathname === '/company' || pathname === '/company/';
   const isDiscover = pathname.startsWith('/company/discover');
   const isRoles = pathname.startsWith('/company/roles');
@@ -16,14 +13,14 @@ export function CompanySidebar() {
   return (
     <div className="w-64 border-r border-border bg-background min-h-screen flex flex-col">
       <div className="h-16 flex items-center px-6 border-b border-border">
-        <Link href="/" className="font-heading font-bold text-xl tracking-tight text-white">
+        <Link to="/" className="font-heading font-bold text-xl tracking-tight text-white">
           Account<span className="text-primary">Executive</span>.com
         </Link>
       </div>
       <div className="p-4 flex-1">
         <nav className="space-y-1 mt-2">
-          <Link 
-            href="/company" 
+          <Link
+            to="/company"
             className={`flex items-center gap-3 px-3 py-2 text-sm rounded-md transition-colors ${
               isCompanyRoot ? 'text-foreground bg-secondary' : 'text-muted-foreground hover:text-foreground hover:bg-secondary/50'
             }`}
@@ -32,8 +29,8 @@ export function CompanySidebar() {
             Inbound Queue
             <span className={`ml-auto text-[10px] font-mono px-2 py-0.5 rounded-full ${isCompanyRoot ? 'bg-primary text-primary-foreground' : 'bg-secondary text-muted-foreground'}`}>3</span>
           </Link>
-          <Link 
-            href="/company/discover" 
+          <Link
+            to="/company/discover"
             className={`flex items-center gap-3 px-3 py-2 text-sm rounded-md transition-colors ${
               isDiscover ? 'text-foreground bg-secondary' : 'text-muted-foreground hover:text-foreground hover:bg-secondary/50'
             }`}
@@ -41,8 +38,8 @@ export function CompanySidebar() {
             <Compass className={`w-4 h-4 ${isDiscover ? 'text-primary' : ''}`} />
             Candidate Discovery
           </Link>
-          <Link 
-            href="/company/roles" 
+          <Link
+            to="/company/roles"
             className={`flex items-center gap-3 px-3 py-2 text-sm rounded-md transition-colors ${
               isRoles ? 'text-foreground bg-secondary' : 'text-muted-foreground hover:text-foreground hover:bg-secondary/50'
             }`}
@@ -50,8 +47,8 @@ export function CompanySidebar() {
             <Briefcase className={`w-4 h-4 ${isRoles ? 'text-primary' : ''}`} />
             Your Roles
           </Link>
-          <Link 
-            href="/company/profile" 
+          <Link
+            to="/company/profile"
             className={`flex items-center gap-3 px-3 py-2 text-sm rounded-md transition-colors ${
               isProfile ? 'text-foreground bg-secondary' : 'text-muted-foreground hover:text-foreground hover:bg-secondary/50'
             }`}
@@ -59,8 +56,8 @@ export function CompanySidebar() {
             <Building className={`w-4 h-4 ${isProfile ? 'text-primary' : ''}`} />
             Company Page
           </Link>
-          <Link 
-            href="/company/intelligence" 
+          <Link
+            to="/company/intelligence"
             className={`flex items-center gap-3 px-3 py-2 text-sm rounded-md transition-colors ${
               isIntelligence ? 'text-foreground bg-secondary' : 'text-muted-foreground hover:text-foreground hover:bg-secondary/50'
             }`}

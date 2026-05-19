@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ChevronDown, ChevronRight, Search } from 'lucide-react';
+import { ChevronDown, ChevronRight } from 'lucide-react';
 
 interface FilterAccordionProps {
   title: string;
