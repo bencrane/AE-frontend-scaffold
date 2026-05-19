@@ -1,7 +1,4 @@
-"use client";
-
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { Link, useLocation } from "react-router-dom";
 import { Compass, Briefcase, Fingerprint, Sliders, MessageSquare, Settings } from "lucide-react";
 
 const navigation = [
@@ -13,13 +10,13 @@ const navigation = [
 ];
 
 export function AESidebar() {
-  const pathname = usePathname();
+  const { pathname } = useLocation();
 
   return (
     <div className="w-[280px] h-full bg-zinc-950 border-r border-slate-800 flex flex-col pt-6 font-sans flex-shrink-0">
       {/* Brand & Context */}
       <div className="px-6 mb-8 mt-2">
-        <Link href="/ae" className="flex items-center gap-2">
+        <Link to="/ae" className="flex items-center gap-2">
           <div className="w-8 h-8 bg-white rounded flex items-center justify-center">
             <span className="text-zinc-900 font-bold text-lg font-heading leading-none">AE</span>
           </div>
@@ -41,17 +38,16 @@ export function AESidebar() {
         <div className="text-xs font-mono text-slate-500 uppercase tracking-widest pl-3 mb-4 mt-8">
           Candidate Portal
         </div>
-        
+
         {navigation.map((item) => {
-          // simple active matching
           const isActive = pathname === item.href || (item.href !== '/ae' && pathname?.startsWith(item.href));
           return (
             <Link
               key={item.name}
-              href={item.href}
+              to={item.href}
               className={`flex items-center justify-between px-3 py-2.5 rounded-md transition-colors ${
-                isActive 
-                  ? 'bg-zinc-900 text-white border border-slate-800/50' 
+                isActive
+                  ? 'bg-zinc-900 text-white border border-slate-800/50'
                   : 'text-slate-400 hover:text-white hover:bg-zinc-900/50 border border-transparent'
               }`}
             >
@@ -71,8 +67,8 @@ export function AESidebar() {
 
       {/* Footer / Account Settings */}
       <div className="p-4 border-t border-slate-800">
-        <Link 
-          href="/ae/settings" 
+        <Link
+          to="/ae/settings"
           className="flex items-center gap-3 px-3 py-2.5 rounded-md text-slate-400 hover:text-white hover:bg-zinc-900/50 transition-colors"
         >
           <Settings className="w-4 h-4" />

@@ -1,5 +1,3 @@
-"use client";
-
 import { useRef } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { RoleTriageCard } from "./RoleTriageCard";
@@ -11,7 +9,7 @@ interface Props {
   roles: Role[];
 }
 
-export function RoleCarousel({ title, slug, roles }: Props) {
+export function RoleCarousel({ title, slug: _slug, roles }: Props) {
   const scrollRef = useRef<HTMLDivElement>(null);
 
   const scroll = (direction: "left" | "right") => {

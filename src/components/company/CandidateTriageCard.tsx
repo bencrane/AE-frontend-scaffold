@@ -1,9 +1,7 @@
-"use client";
-
 import { Candidate } from "@/lib/mock-candidates";
 import { Button } from "@/components/ui/button";
 import { Check, X, Building, Target, Zap, Code } from "lucide-react";
-import { useRouter } from "next/navigation";
+import { useNavigate } from "react-router-dom";
 
 function formatPercent(value: number) {
   return new Intl.NumberFormat("en-US", {
@@ -21,7 +19,7 @@ function formatMoney(value: number) {
 }
 
 export function CandidateTriageCard({ candidate, mode = "triage" }: { candidate: Candidate, mode?: "triage" | "search" }) {
-  const router = useRouter();
+  const navigate = useNavigate();
   return (
     <div className="h-full bg-card border border-border flex flex-col group overflow-hidden">
       <div className="p-6 pb-4 flex justify-between items-start border-b border-border bg-secondary/20 flex-shrink-0">
@@ -104,7 +102,7 @@ export function CandidateTriageCard({ candidate, mode = "triage" }: { candidate:
            ) : (
              <Button 
                className="rounded-none bg-primary text-primary-foreground hover:bg-emerald-600"
-               onClick={() => router.push(`/company/candidate/${candidate.id}`)}
+               onClick={() => navigate(`/company/candidate/${candidate.id}`)}
              >
                <Target className="w-4 h-4 mr-2" />
                Reveal Candidate
